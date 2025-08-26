@@ -1,7 +1,11 @@
 package com.example.booksitos.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 public class AuthRequest {
+    @NotNull(message = "no olvides agregar el email !!!")
     private String email;
+    @NotNull(message = "no olvides agregar tu contraseña !!!")
     private String password;
 
     public AuthRequest() {}

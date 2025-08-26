@@ -18,8 +18,10 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthResponse register(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public AuthResponse register(AuthRequest request) {
+        User user = new User();
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setEmail(request.getEmail());
         userRepository.save(user);
         var jwt = jwtService.generateToken(user);
         AuthResponse response = new AuthResponse();
